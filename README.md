@@ -2,8 +2,8 @@
 
 This is the code and configuration of our pre-print paper available on [MedRxiv here](https://www.medrxiv.org/content/10.1101/2021.01.06.21249352v1). You can sign up for the [OpenSAFELY email newsletter here](https://opensafely.org/contact/) for updates about te _NHS Services Restortion Oberservatory_ and other OpenSAFELY work.
 
-- Jupyter notebooks containing all grpahs are in /notebooks. If notebooks do not load you can use https://nbviewer.jupyter.org/
-- Code dictionaries are available in /data
+- Jupyter notebooks containing all graphs are in [/notebooks](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/notebooks). If notebooks do not load you can use https://nbviewer.jupyter.org/
+- Code dictionaries are available in [/data](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/data)
 
 
 # About the OpenSAFELY framework
