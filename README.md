@@ -1,6 +1,6 @@
 # OpenSAFELY NHS Service Restoration Observatory 1: describing trends and variation in primary care clinical activity for 23.3 million patients in England during the first wave of COVID-19
 
-This is the code and configuration of our pre-print paper available on [MedRxiv here](insert link when live).
+This is the code and configuration of our pre-print paper available on [MedRxiv here](https://www.medrxiv.org/content/10.1101/2021.01.06.21249352v1). You can sign up for the [OpenSAFELY email newsletter here](https://opensafely.org/contact/) for updates about te _NHS Services Restortion Oberservatory_ and other OpenSAFELY work.
 
 - Jupyter notebooks containing all grpahs are in /notebooks. If notebooks do not load you can use https://nbviewer.jupyter.org/
 - Code dictionaries are available in /data
