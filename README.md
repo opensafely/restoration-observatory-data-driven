@@ -1,6 +1,19 @@
+# OpenSAFELY NHS Service Restoration Observatory - Data Driven analysis
+
+This is the code and configuration for two papers describing trends and variation in NHS Primary care activity for 23.3 million patients in England, using data-driven analysis to identify common clinical codes, grouped into eight clinical topics. 
+
+
 # OpenSAFELY NHS Service Restoration Observatory 1: describing trends and variation in primary care clinical activity for 23.3 million patients in England during the first wave of COVID-19
 
-This is the code and configuration for our paper published in BJGP [here](https://bjgp.org/content/72/714/e63.long). You can sign up for the [OpenSAFELY email newsletter here](https://opensafely.org/contact/) for updates about the _NHS Services Restortion Oberservatory_ and other OpenSAFELY projects.
+This is our first paper, published in BJGP [here](https://bjgp.org/content/72/714/e63.long). Here we focus on pathology and respiratory clinical activity.
+
+- Jupyter notebooks containing all graphs are in [/notebooks](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/notebooks). If notebooks do not load you can use https://nbviewer.jupyter.org/
+- Code dictionaries are available in [/data](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/data)
+
+
+# OpenSAFELY NHS Service Restoration Observatory 2: Changes in primary care activity across six clinical areas
+
+This is our second paper, available as a preprint shortly, which cover six further clinical topics. 
 
 - Jupyter notebooks containing all graphs are in [/notebooks](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/notebooks). If notebooks do not load you can use https://nbviewer.jupyter.org/
 - Code dictionaries are available in [/data](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/data)
