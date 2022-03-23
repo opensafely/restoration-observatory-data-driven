@@ -169,7 +169,9 @@ def get_subcodes(codelist, code_dict, digits, end_date, threshold, dbconn):
     df_out = pd.DataFrame()
     with closing_connection(dbconn) as connection:
         out = pd.read_sql(sql1, connection)
-
+        
+        # turn codelist string to list and iterate over each item
+        codelist = codelist.replace("(","").replace(")","").replace("'","").replace(" ","").split(",")
         for code in codelist:
             out1 = out.loc[out["first_digits"].str[:len(code)]==code].sort_values(by="events", ascending=False).head(50)
             out1["parent_code"] = code
@@ -335,8 +337,9 @@ def plotting_all(codelist, code_dict, h, threshold, end_date, dbconn, second_cha
     d = np.where(subset["digits"].max()==5, 3, 2)
     c = subset.loc[subset["digits"]==d] # select only codes with the min number of digits 
                                         # (either all are 2, or there is a mix of 3 & 5, where only the 3-digit ones need a list of sub codes producing)
-    c = tuple(subset["first_digits"])
+    c = str(tuple(subset["first_digits"])).replace(",)",")") 
     subcodes = get_subcodes(c, code_dict, d, end_date, threshold, dbconn) 
+    subcodes = subcodes.loc[~subcodes['Description'].str.contains('Erectile')] # exclude erectile dysfuntion
     now = datetime.now()
     subcodes.to_csv(os.path.join("..","output",f"subcodes_l{d}_{end_date}_{now}.csv"), index=False)
     #####
@@ -519,11 +522,13 @@ def filter_codelists(df, keywords=None, concepts=None, eventcount=False, in_or_o
     if keywords is None or keywords==[]:
         keywords=[]
     else:
-        for k in keywords:
-            if in_or_out == "in":
+        if in_or_out == "in":
+            for k in keywords:
                 filtered_list = pd.concat([filtered_list, full_list.loc[full_list["Description"].fillna("").str.contains(k, flags=re.IGNORECASE)]]).drop_duplicates()
-            else:
-                filtered_list = full_list.loc[~full_list["Description"].fillna("").str.contains(k, flags=re.IGNORECASE)]
+        else:
+            descriptions = full_list["Description"].fillna("")
+            descriptions = [d for d in descriptions if any(k.lower() in d.lower() for k in keywords)]
+            filtered_list = full_list.loc[~full_list["Description"].isin(descriptions)]
                 
     # filter concepts       
     if concepts is None or concepts==[]:
@@ -531,14 +536,15 @@ def filter_codelists(df, keywords=None, concepts=None, eventcount=False, in_or_o
         if len(filtered_list)==0:
             filtered_list = full_list
     else:
-        for c in concepts:
-            if in_or_out == "in":
-                filtered_list = pd.concat([filtered_list, full_list.loc[full_list["concept_desc"]==c] ])
-            else:
-                if len(filtered_list)>0: # if the list was populated in previous step, filter it further
-                    filtered_list = filtered_list.loc[filtered_list["concept_desc"]!=c]
-                else: # if no existing list, filter the full list
-                    filtered_list = full_list.loc[full_list["concept_desc"]!=c]
+        if in_or_out == "in":
+            filtered_list = pd.concat([filtered_list, full_list.loc[full_list["concept_desc"].isin(concepts)] ])
+        else:
+            concepts_out = full_list["concept_desc"].fillna("")
+            concepts_out = [c for c in concepts_out if c in concepts]
+            if len(filtered_list)>0: # if the list was populated in previous step, filter it further
+                filtered_list = filtered_list.loc[~filtered_list["concept_desc"].isin(concepts_out)]
+            else: # if no existing list, filter the full list
+                filtered_list = full_list.loc[~full_list["concept_desc"].isin(concepts_out)]
                 
 
     filtered_list = filtered_list.drop_duplicates().sort_values(by="2020 events (mill)", ascending=False)
