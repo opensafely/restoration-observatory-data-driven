@@ -13,7 +13,8 @@ This is our first paper, published in BJGP [here](https://bjgp.org/content/72/71
 
 # OpenSAFELY NHS Service Restoration Observatory 2: Changes in primary care activity across six clinical areas
 
-This is our second paper, available as a preprint shortly, which cover six further clinical topics. 
+This is our second paper, published in BJGP [here](https://doi.org/10.3399/BJGP.2022.0301), which cover six further clinical topics; dardiovascular disease, diabetes, mental health, female health and processes related to medications. 
+
 
 - Jupyter notebooks containing all graphs are in [/notebooks](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/notebooks). If notebooks do not load you can use https://nbviewer.jupyter.org/
 - Code dictionaries are available in [/data](https://github.com/opensafely/restoration-observatory-intro-notebook/tree/master/data)
